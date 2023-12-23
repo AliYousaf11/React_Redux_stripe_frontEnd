@@ -2,20 +2,50 @@ import { ActionTypes } from "../contants/Action-type"
 
 
 const initialState = {
-    products: []
+    products: [],
+    isLoading: false,
+    erorr: false
 }
+
 export const productReducer = (state = initialState, action) => {
     switch (action.type) {
-
-        // set all fetch products
         case ActionTypes.SET_PRODUCTS:
-            return { ...state, products: action.payload }
-        case ActionTypes.FETCH_PRODUCTS:
-            return { ...state, products: action.payload }
+            return { ...state, products: action.payload, isLoading: false, error: null };
+
+        case ActionTypes.FETCH_PRODUCTS_REQUEST:
+            return { ...state, isLoading: true, error: null };
+
+        case ActionTypes.FETCH_PRODUCTS_SUCCESS:
+            return { ...state, products: action.payload, isLoading: false, error: null };
+
+        case ActionTypes.FETCH_PRODUCTS_FAILURE:
+            return { ...state, isLoading: false, error: action.payload };
+            
         default:
-            return state
+            return state;
     }
 }
+
+const checkout = {
+    id: "",
+    isLoading: false,
+    erorr: false
+}
+
+export const checkoutReducer = (state = checkout, action) => {
+    switch (action.type) {
+    
+        case ActionTypes.CHECKOUT_PRODUCTS_REQUEST:
+            return { ...state, isLoading: true, error: null };
+        case ActionTypes.CHECKOUT_PRODUCTS_SUCCESS:
+            return { ...state, id: action.payload, isLoading: false, error: null };
+        case ActionTypes.CHECKOUT_PRODUCTS_FAILURE:
+            return { ...state, isLoading: false, error: action.payload };
+        default:
+            return state;
+    }
+}
+
 
 const purchasedProduct = {
     products: [],

@@ -1,11 +1,12 @@
 import React, { useEffect } from 'react'
 import ProductComponent from './ProductComponent'
-import { useDispatch } from 'react-redux'
 import { FetchProducts } from './../redux/actions/ProductAction';
-// import { PulseLoader } from "react-spinners"
+import { PulseLoader } from "react-spinners"
+import { useDispatch, useSelector } from 'react-redux'
 
 const ProductListening = () => {
     const dispatch = useDispatch()
+    const { isLoading } = useSelector((state) => state.allProducts);
 
     useEffect(() => {
         dispatch(FetchProducts())
@@ -23,9 +24,8 @@ const ProductListening = () => {
                     fontWeight: "bold"
 
                 }}>All Products</h1>
-            {/* {loading ? <PulseLoader color="#9733EE" />
-                : <ProductComponent />} */}
-            <ProductComponent />
+            {isLoading ? <PulseLoader color="#9733EE" />
+                : <ProductComponent />}
         </div>
     )
 }
