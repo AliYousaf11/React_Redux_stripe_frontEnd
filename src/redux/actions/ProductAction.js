@@ -34,7 +34,7 @@ export const Checkout = (products) => async (dispatch) => {
         dispatch({ type: ActionTypes.CHECKOUT_PRODUCTS_REQUEST });
 
         console.log("stripe", products)
-        const response = await axios.post('https://github.com/AliYousaf11/React_Redux_stripe_frontEnd/stripe/create-checkout-session', { products }, {
+        const response = await axios.post('https://vercel.com/aliyousaf11/react-redux-stripe-back-end/stripe/create-checkout-session', { products }, {
             headers: {
                 "Content-Type": "application/json"
             },
