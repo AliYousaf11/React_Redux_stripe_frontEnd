@@ -19,7 +19,7 @@ const SelectedProduct = () => {
     try {
       console.log("aliyousaf", products)
       const stripe = await loadStripe('pk_test_51OPrroHw1RpTY5mdmVldWuSuKXM8YfZb4AoDq10umyjUbdS1qoS9tf3yrhJ5w4QmGSkjhUdxjkXCxo5uXXCwBgj000hNQBDJKI');
-      const response = await axios.post('http://localhost:8080/create-checkout-session', { products }, {
+      const response = await axios.post('https://react-redux-stripe-back-end.vercel.app/create-checkout-session', { products }, {
         headers: {
           "Content-Type": "application/json"
         },
